@@ -1,5 +1,5 @@
 # A simple demo application for the HERE Geocoder API
-Showcases the "adminInfo" feature, which returns information about the selected location, such as local time, currency, and driving side.
+Showcases the "includeShapeLevels" feature of the Geocoder API, which returns the outline of an area (such as a country, a postal code or a city district).
 
 > **Note:** In order to get the sample code to work, you **must** replace the `app_id` and `app-code` strings during platform setup with valid HERE developer credentials.
 
