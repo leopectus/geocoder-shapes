@@ -18,8 +18,8 @@
     var coord;
 
     function reverseGeocode(platform) {
-        //Set up Geocoder API
-        //The adminInfo parameter ensures that information about the driving side is returned
+        // set up Geocoder API
+        // the adminInfo parameter ensures that information about the driving side is returned
         var geocoder = platform.getGeocodingService();  
         var prox = coord.lat + ',' + coord.lng;
         
@@ -38,7 +38,7 @@
     }
 
     function onSuccess(result) {
-        //Parse results from Geocoder API and retrieve shape information
+        // parse results from Geocoder API and retrieve shape information
         locations = result.Response.View[0].Result;
         shape = locations[0].Location.Shape.Value;                 
         addCountryOutline(map);
@@ -55,8 +55,8 @@
 
         // set up polygon style
         var customStyle = {
-            strokeColor: 'black', //TODO: change color
-            fillColor: 'rgba(0,175,170,0.5)', //TODO: change color
+            strokeColor: 'black', 
+            fillColor: 'rgba(0,175,170,0.5)', 
             lineWidth: 2,            
             lineJoin: 'bevel'
         };
@@ -75,7 +75,7 @@
         }        
     }
 
-    //Step 1: initialize communication with the platform
+    // step 1: initialize communication with the platform
     var platform = new H.service.Platform({
         app_id: 'app_id',
         app_code: 'app_code',        
@@ -83,27 +83,27 @@
     });
     var defaultLayers = platform.createDefaultLayers();
 
-    //Step 2: initialize a map - this map is centered over California
+    // step 2: initialize a map - this map is centered over California
     var map = new H.Map(document.getElementById('map'),
         defaultLayers.normal.map,{
             center: {lat: 5.54396, lng: 23.80226},
             zoom: 4
         });
 
-    //Step 3: make the map interactive
+    // step 3: make the map interactive
     var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
-    //Step 4: Create the default UI components
+    // step 4: create the default UI components
     var ui = H.ui.UI.createDefault(map, defaultLayers);
     var markerGroup = new H.map.Group();
     map.addObject(markerGroup);
 
     function setUpClickListener(map) {  
-        //Register a tap listener on the map and start geocoder on click
+        // register a tap listener on the map and start geocoder on click
         map.addEventListener('tap', function (evt) {
             coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);    
-        reverseGeocode(platform, coord);    
-    });
+            reverseGeocode(platform, coord);    
+        });
     }
 
     setUpClickListener(map);
